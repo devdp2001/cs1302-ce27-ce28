@@ -2,6 +2,7 @@ package cs1302.sorting;
 
 import java.io.*;
 import java.util.*;
+import java.lang.*;
 
 /**
  * Class for SelectionSort.
@@ -14,26 +15,24 @@ public class SelectionSort {
         selectMin(intArray, 0, 4, Integer::compareTo);
         System.out.println("hi: 4 , lo: 0");
         System.out.println(Arrays.toString(intArray)); // [ 1, 3, 2, 4, 5 ]  
-        System.out.println("The swapping of adjacent Integer elements for the indexes, 0-1, "
-                           + "that are not in order, until the list is in order.");
-
+        System.out.println("The swapping of then minimum value in the array to the lo position, "
+                           + "from 0 - 4");
         System.out.println();
-        Double[] doubleArray = {2.2, 3.3, 1.1, 4.4, 5.5};
-        System.out.println(Arrays.toString(doubleArray)); // [ 2.2, 3.3, 1.1, 4.4, 5.5 ] 
-        selectMin(doubleArray, 0, 4, Double::compareTo);
-        System.out.println("hi: 4, lo: 0");
+        Double[] doubleArray = {1.1, 3.3, 2.2, 4.4, 5.5};
+        System.out.println(Arrays.toString(doubleArray)); // [ 1.1, 3.3, 2.2, 4.4, 5.5 ] 
+        selectMin(doubleArray, 1, 4, Double::compareTo);
+        System.out.println("hi: 4, lo: 1");
         System.out.println(Arrays.toString(doubleArray)); // [ 1.1, 2.2, 3.3, 4.4, 5.5 ]  
-        System.out.println("The swapping of adjacent Double elements for the indexes, 0-4, "
-                           + "that are not in order, until the list is in order.");
-
+        System.out.println("The swapping of then minimum value in the array to the lo position, " 
+                           + "from 1 - 4.");
         System.out.println();
-        String[] stringArray = {"a", "c", "b"};
+        String[] stringArray = {"c", "b", "a"};
         System.out.println(Arrays.toString(stringArray));
         selectMin(stringArray, 0, 2, String::compareTo);
         System.out.println("hi: 2, lo: 0");
         System.out.println(Arrays.toString(stringArray));
-        System.out.println("The swapping of adjacent String elements for the indexes, 0-2, "
-                           + "that are not in order, until the list is in order.");
+        System.out.println("The swapping of then minimum value in the array to the lo position, "
+                           + "from 0 - 2.");
     } // main 
     
     /**             
@@ -47,14 +46,18 @@ public class SelectionSort {
      * @param c comparator used in method   
      */
     public static <T> void selectMin(T[] array, int lo, int hi, Comparator<T> c) {
-	T lowest = null;
+        T lowest = array[lo];
+        int indexOf = 0; 
         for (int i = lo; i < hi; i++) {
-            if (c.compare(array[i], array[i + 1]) < 0) {
+            if (c.compare(lowest, array[i + 1]) > 0) {
                 lowest = array[i + 1];
-                //array[i] = array[i + 1];
-                //array[i + 1] = temp;
+                indexOf = i + 1;
             } // if      
-        } // for  
-	System.out.println(lowest);
+        } // for
+
+        T temp = array[lo];
+        array[lo] = lowest;
+        array[indexOf] = temp;
+        
     } // selectMin  
 } // SelectionSort
