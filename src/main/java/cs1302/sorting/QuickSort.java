@@ -22,6 +22,12 @@ public class QuickSort {
         int newPivotDouble = partition(doubleArray, 0, 1, 4, Double::compareTo);
         System.out.println(Arrays.toString(doubleArray)); // [ 1.1, 2.2, 3.3, 4.4, 5.5 ]
         System.out.println(newPivotDouble);
+
+        System.out.println();
+        Integer[] batman = {6, 11, 2, 4, 17, 5};
+        System.out.println(Arrays.toString(batman));
+        quickSort(batman, 0, batman.length - 1, Integer::compareTo);
+        System.out.println(Arrays.toString(batman));
     } // main                                                              
 
     /**                                                                    
@@ -55,5 +61,20 @@ public class QuickSort {
         array[hi] = temp;
         
         return i;
-    }
-} // partition
+    } //partition
+
+    /**
+     *Quicksort method.
+     *@param array
+     *@param lo starting point
+     *@param hi end point
+     *@param <T> generic type
+     *@param c comparator
+     */
+    public static <T> void quickSort(T[] array, int lo, int hi, Comparator<T> c) {
+        int pivot = hi / 2 + lo / 2;
+        for (int i = hi; i > lo; i--) {
+            partition(array, lo, pivot, hi, c);
+        } //for
+    } //quickSort    
+} //QuickSort
