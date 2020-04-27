@@ -54,3 +54,66 @@ void selectionSort(array, lo, hi, c)
         } //for -----------------------------------------/
 } // selectionSort
 ```
+
+## Partition Algo
+
+```java
+void partition(array, lo, pivot, hi, c) {
+    // REMEMBER, n = hi - lo + 1
+Swap:
+        int i = lo;
+        T temp = array[pivot]; ------------ 1 |
+        array[pivot] = array[hi]; --------- 1 |
+        array[hi] = temp; ----------------- 1 |
+
+        // int i = lo;                                
+        for (int  j = lo; j < hi - 1 ; j++) { ----------------------\
+            if (c.compare (array[j], array[hi]) < 0) {
+                temp  = array[i]; -------------------------------- 1 |
+                array[i] = array[j]; ----------------------------- 1 |(hi - lo - 1) -> T(n)
+                array[j] = temp; --------------------------------- 1 |
+                i++;
+            }
+        } -----------------------------------------------------------/
+        temp = array[i]; ----------------------------------------- 1 |
+        array[i] = array[hi]; ------------------------------------ 1 |
+        array[hi] = temp; ---------------------------------------- 1 |
+
+        return i;
+
+} // partition
+
+Swap:
+T(n) <= (hi - lo - 1)(3) + b
+Since n <= hi - lo - 1, T(n) <= 3(n-2) + 6
+
+
+void partition(array, lo, pivot, hi, c) {
+    // REMEMBER, n = hi - lo + 1
+Comparison:
+        int i = lo;
+        T temp = array[pivot];
+        array[pivot] = array[hi];
+        array[hi] = temp;
+
+        // int i = lo;
+        for (int  j = lo; j < hi - 1 ; j++) { ----------------------\
+            if (c.compare (array[j], array[hi]) < 0) { ---------- 1 | (hi - lo - 1) = T(n)
+                temp  = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                i++;
+            }
+        } ----------------------------------------------------------/
+        temp = array[i]; 
+        array[i] = array[hi];
+        array[hi] = temp;
+	
+        return i;
+	
+} // partition
+
+Comparison:
+T(n) = 1 * (hi - lo - 1)
+Since n = hi - lo + 1, T(n) = 1 * (n-2)
+```
