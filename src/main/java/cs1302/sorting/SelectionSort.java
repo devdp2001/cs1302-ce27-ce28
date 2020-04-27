@@ -74,5 +74,4 @@ public class SelectionSort {
             selectMin(array, i, hi, c);
         } //for
     } //selectSort
-
 } // SelectionSort
